@@ -1,0 +1,18 @@
+# CyberGuard — Python/Flask reference port (mirrors this hosted Next.js build module-for-module).
+# Install: pip install -r requirements.txt
+Flask==3.1.0
+scikit-learn==1.5.2
+nltk==3.9.1
+pandas==2.2.3
+numpy==2.1.3
+
+# --- Module mapping (Flask port <-> this build) ---
+# app.py (Flask routes)              <-> src/app/api/*/route.ts
+# nlp_preprocess.py (NLTK)           <-> src/lib/cyberguard/preprocessing.ts
+# train.py (TF-IDF + LogisticRegression, accuracy/precision/recall/F1, confusion matrix)
+#                                    <-> src/lib/cyberguard/tfidf.ts + logreg.ts + model.ts
+# dataset/sms_india.csv (labelled)   <-> src/lib/cyberguard/dataset.ts (121 msgs; or UCI SMS Spam Collection 5574)
+# chatbot.py (intents + 1930 info)   <-> src/lib/cyberguard/chatbot.ts
+# scorecard.py (6 indicators)        <-> src/lib/cyberguard/scorecard.ts
+# quiz.py + quiz.db (SQLite)         <-> src/lib/cyberguard/quiz.ts + Postgres quiz_attempts (schema in src/db/schema.ts)
+# NOTE: this hosted build uses Postgres instead of SQLite and never stores pasted messages.
